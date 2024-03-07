@@ -11,12 +11,13 @@ datasource db {
 }
 
 model ShortLink {
-    id          String  @id @default(cuid())
-    originalUrl String  @db.VarChar(255)
-    code        String  @db.VarChar(7)
-    alias       String? @db.VarChar(30)
-    description String? @db.Text
-    User        User    @relation(fields: [userId], references: [id])
+    id          String   @id @default(cuid())
+    originalUrl String   @db.VarChar(255)
+    code        String   @db.VarChar(7)
+    alias       String?  @db.VarChar(30)
+    description String?  @db.Text
+    createdAt   DateTime @default(now())
+    User        User     @relation(fields: [userId], references: [id])
     userId      String
 
     @@unique([code, alias])
