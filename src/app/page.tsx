@@ -18,7 +18,7 @@ export default function Home() {
         <LiaCutSolid fontSize='6.2rem' />
       </h1>
 
-      <p className='mb-2 w-2/6 text-center'>
+      <p className='mb-2 w-2/6 text-center text-gray-600'>
         Transform your long and complicated links into something more
         presentable and easy to remember
       </p>
