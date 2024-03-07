@@ -13,7 +13,7 @@ const LandingNavbar = () => {
       <div className='flex items-center gap-2'>
         <SignInWithGitHubButton />
 
-        <Link href='https://github.com/JasonCrk/cutlink_app' target='_blank'>
+        <Link href='https://github.com/JasonCrk/CutLink' target='_blank'>
           <IoLogoGithub fontSize='2.5rem' />
         </Link>
       </div>
