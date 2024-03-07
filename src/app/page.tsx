@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 
 import LandingNavbar from '@/components/LandingNavbar'
@@ -23,7 +25,7 @@ export default function Home() {
         presentable and easy to remember
       </p>
 
-      <Link href='/get-started'>
+      <Link href='/getting_started'>
         <Button>Get Started</Button>
       </Link>
     </main>
