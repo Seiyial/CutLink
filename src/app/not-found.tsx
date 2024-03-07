@@ -1,3 +1,5 @@
+'use client'
+
 export default function NotFoundPage() {
   return (
     <main className='flex h-screen flex-col items-center justify-center gap-2'>
