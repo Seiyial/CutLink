@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import SignInWithGitHubButton from '@/components/SignInWithGitHubButton'
 
-export default function GetStatedPage() {
+export default function GettingStartedPage() {
   return (
     <section className='flex h-screen flex-col items-center justify-center gap-3 pb-48'>
       <h1 className='text-center text-6xl font-bold leading-9'>
