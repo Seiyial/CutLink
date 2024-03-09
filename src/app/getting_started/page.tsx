@@ -1,10 +1,15 @@
-'use client'
-
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
+
+import { getServerAuthSession } from '@/server/auth'
 
 import SignInWithGitHubButton from '@/components/SignInWithGitHubButton'
 
-export default function GettingStartedPage() {
+export default async function GettingStartedPage() {
+  const session = await getServerAuthSession()
+
+  if (session) redirect('/dashboard')
+
   return (
     <section className='flex h-screen flex-col items-center justify-center gap-3 pb-48'>
       <h1 className='text-center text-6xl font-bold leading-9'>
