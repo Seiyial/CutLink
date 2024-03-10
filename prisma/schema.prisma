@@ -17,7 +17,7 @@ model ShortLink {
     alias       String?  @db.VarChar(30)
     description String?  @db.Text
     createdAt   DateTime @default(now())
-    User        User     @relation(fields: [userId], references: [id])
+    user        User     @relation(fields: [userId], references: [id])
     userId      String
 
     @@unique([code, alias])
