@@ -6,7 +6,7 @@ import Button from '@/components/Button'
 
 const SignInWithGitHubButton = () => {
   const handleSignInWithGitHub = async () => {
-    await signIn('github')
+    await signIn('github', { callbackUrl: '/dashboard' })
   }
 
   return <Button onClick={handleSignInWithGitHub}>Sign in</Button>

@@ -1,18 +1,21 @@
 'use client'
 
-import type { HTMLAttributes } from 'react'
+import type { HTMLAttributes, ReactNode } from 'react'
 
 interface Props extends HTMLAttributes<HTMLButtonElement> {
   children: string
+  startIcon?: ReactNode
 }
 
-const Button = ({ children, ...props }: Props) => {
+const Button = ({ children, className, startIcon, ...props }: Props) => {
   return (
     <button
-      className='rounded bg-gray-200 px-4 py-1.5 transition-colors hover:bg-gray-300'
+      className={`flex items-center justify-center gap-2 rounded bg-gray-200 px-4 py-1.5 transition-colors hover:bg-gray-300 active:bg-gray-400 ${className}`}
       {...props}
     >
-      {children}
+      {startIcon}
+
+      <span>{children}</span>
     </button>
   )
 }

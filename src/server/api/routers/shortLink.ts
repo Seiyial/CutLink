@@ -1,21 +1,42 @@
 import { z } from 'zod'
 
-import { createTRPCRouter, publicProcedure } from '@/server/api/trpc'
+import { createTRPCRouter, protectedProcedure } from '@/server/api/trpc'
 
 export const shortLinkRouter = createTRPCRouter({
-  getShortLink: publicProcedure
-    .input(z.object({ query: z.string().min(1) }))
-    .query(({ input, ctx }) => {
-      return ctx.db.shortLink.findFirst({
+  searchShortLinks: protectedProcedure
+    .input(z.string().max(30, 'The query must has maximum 30 characters'))
+    .query(({ ctx, input: searchQuery }) => {
+      const isSearchQueryExist = Boolean(searchQuery)
+
+      return ctx.db.shortLink.findMany({
         where: {
-          OR: [
-            {
-              code: input.query,
-            },
-            {
-              alias: input.query,
-            },
-          ],
+          ...(isSearchQueryExist
+            ? {
+                OR: [
+                  {
+                    alias: {
+                      contains: searchQuery,
+                    },
+                  },
+                  {
+                    code: {
+                      contains: searchQuery,
+                    },
+                  },
+                ],
+              }
+            : undefined),
+          AND: {
+            userId: ctx.session.user.id,
+          },
+        },
+        select: {
+          id: true,
+          alias: true,
+          code: true,
+          createdAt: true,
+          originalUrl: true,
+          description: true,
         },
       })
     }),
