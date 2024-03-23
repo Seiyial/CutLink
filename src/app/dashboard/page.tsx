@@ -1,14 +1,15 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 'use client'
 
 import { useSearchShortLinks } from '@/hooks/useSearchShortLinks.hook'
 import { useSearchQueryParams } from '@/hooks/useSearchQueryParams.hook'
 import { useHandleSearchShortLinks } from '@/hooks/useHandleSearchShortLinks.hook'
+import { useModal } from '@/hooks/useModal.hook'
 
 import Input from '@/components/Input'
 import Button from '@/components/Button'
 import ShortLinkCard from '@/components/ShortLinkCard'
 import ShortLinkCardSkeleton from '@/components/ShortLinkCardSkeleton'
+import CreateShortLinkModal from '@/components/CreateShortLinkModal'
 
 import { IoIosSearch, IoMdAdd } from 'react-icons/io'
 import { MdErrorOutline } from 'react-icons/md'
@@ -16,31 +17,38 @@ import { TbLinkOff } from 'react-icons/tb'
 
 export default function DashboardPage() {
   const { searchParams } = useSearchQueryParams()
+  const { isOpen, onOpen, onClose } = useModal()
 
-  const handleSearchShortLinks = useHandleSearchShortLinks()
+  const searchShortLinks = useHandleSearchShortLinks()
 
   const { isLoading, isError, isSuccess, error, shortLinks } =
     useSearchShortLinks(searchParams.get('query') ?? '')
 
   return (
     <section className='pt-5'>
+      <CreateShortLinkModal isOpen={isOpen} onClose={onClose} />
+
       <article className='mb-4 flex items-center gap-3'>
         <Input
           defaultValue={searchParams.get('query') ?? ''}
-          onChange={handleSearchShortLinks}
-          className='w-full'
+          onChange={searchShortLinks}
           startIcon={<IoIosSearch fontSize='1.4rem' />}
           placeholder='Search...'
           containerClasses='flex-grow'
+          className='w-full'
         />
 
-        <Button startIcon={<IoMdAdd fontSize='1.3rem' />} className='py-2'>
+        <Button
+          startIcon={<IoMdAdd fontSize='1.3rem' />}
+          className='py-2'
+          onClick={onOpen}
+        >
           New short URL
         </Button>
       </article>
 
       {isLoading ? (
-        <section className='grid grid-cols-3 gap-3'>
+        <section className='xs:grid-cols-2 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3'>
           {[...Array(15)].map(() => (
             <ShortLinkCardSkeleton key={crypto.randomUUID()} />
           ))}
@@ -64,16 +72,9 @@ export default function DashboardPage() {
           </article>
         </section>
       ) : isSuccess && shortLinks ? (
-        <section className='grid grid-cols-3 gap-3'>
+        <section className='xs:grid-cols-2 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3'>
           {shortLinks.map(shortLink => (
-            <ShortLinkCard
-              key={shortLink.id}
-              code={shortLink.code}
-              createdAt={shortLink.createdAt}
-              id={shortLink.id}
-              originalUrl={shortLink.originalUrl}
-              alias={shortLink.alias}
-            />
+            <ShortLinkCard key={shortLink.id} {...shortLink} />
           ))}
         </section>
       ) : null}

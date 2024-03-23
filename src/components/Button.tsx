@@ -1,8 +1,8 @@
 'use client'
 
-import type { HTMLAttributes, ReactNode } from 'react'
+import type { ButtonHTMLAttributes, ReactNode } from 'react'
 
-interface Props extends HTMLAttributes<HTMLButtonElement> {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: string
   startIcon?: ReactNode
 }
