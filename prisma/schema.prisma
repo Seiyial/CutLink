@@ -11,16 +11,13 @@ datasource db {
 }
 
 model ShortLink {
-    id          String   @id @default(cuid())
+    id          BigInt   @id @default(autoincrement()) @db.BigInt
     originalUrl String   @db.VarChar(255)
-    code        String   @db.VarChar(7)
-    alias       String?  @db.VarChar(30)
+    alias       String?  @unique @db.VarChar(30)
     description String?  @db.Text
     createdAt   DateTime @default(now())
     user        User     @relation(fields: [userId], references: [id])
     userId      String
-
-    @@unique([code, alias])
 }
 
 // Necessary for Next auth
