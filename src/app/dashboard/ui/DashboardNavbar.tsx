@@ -3,12 +3,13 @@
 import type { User } from 'next-auth'
 import { signOut } from 'next-auth/react'
 
-import Logo from '@/components/Logo'
-import IconButton from '@/components/IconButton'
+import { Button } from '@/components/ui/button'
 
 import Profile from '@/app/dashboard/ui/Profile'
 
-import { IoExitOutline } from 'react-icons/io5'
+import Logo from '@/components/Logo'
+
+import { LogOut } from 'lucide-react'
 
 const DashboardNavbar = ({ image, name }: User) => {
   const handleSignOut = async () => {
@@ -18,15 +19,16 @@ const DashboardNavbar = ({ image, name }: User) => {
   return (
     <nav className='flex justify-between pb-4 pt-6'>
       <Logo />
-
       <menu className='flex items-center gap-2'>
         <Profile image={image} name={name} />
-        <IconButton
-          className='bg-red-600 text-2xl text-white hover:bg-red-700'
+        <Button
+          variant='destructive'
+          className='bg-red-500 hover:bg-red-600'
+          size='icon'
           onClick={handleSignOut}
         >
-          <IoExitOutline />
-        </IconButton>
+          <LogOut className='h-5 w-5' />
+        </Button>
       </menu>
     </nav>
   )
