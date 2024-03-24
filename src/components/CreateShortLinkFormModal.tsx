@@ -20,7 +20,7 @@ interface Props {
   onClose: () => void
 }
 
-const CreateShortLinkModal: FC<Props> = ({ onClose }) => {
+const CreateShortLinkFormModal: FC<Props> = ({ onClose }) => {
   const { mutate: mutateCreateShortLink } = api.shortLink.create.useMutation()
   const utils = api.useUtils()
 
@@ -91,4 +91,4 @@ const CreateShortLinkModal: FC<Props> = ({ onClose }) => {
   )
 }
 
-export default CreateShortLinkModal
+export default CreateShortLinkFormModal

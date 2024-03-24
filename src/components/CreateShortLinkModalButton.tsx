@@ -5,14 +5,12 @@ import { Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 
-import CreateShortLinkModal from '@/components/CreateShortLinkModal'
+import CreateShortLinkFormModal from '@/components/CreateShortLinkFormModal'
 
 const CreateShortLinkModalButton = () => {
   const [open, setOpen] = useState(false)
 
-  const handleCloseModal = () => {
-    setOpen(false)
-  }
+  const handleCloseModal = () => setOpen(false)
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -22,7 +20,7 @@ const CreateShortLinkModalButton = () => {
         </Button>
       </DialogTrigger>
 
-      <CreateShortLinkModal onClose={handleCloseModal} />
+      <CreateShortLinkFormModal onClose={handleCloseModal} />
     </Dialog>
   )
 }
