@@ -15,7 +15,10 @@ const CreateShortLinkModalButton = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant='secondary' className='bg-gray-200 hover:bg-gray-300'>
+        <Button
+          variant='secondary'
+          className='bg-emerald-500 text-white hover:bg-emerald-600'
+        >
           <Plus className='mr-1 h-5 w-5' /> New short link
         </Button>
       </DialogTrigger>
