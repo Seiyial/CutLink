@@ -12,9 +12,9 @@ import type { CreateShortLink } from '@/types/createShortLink'
 import { createShortLinkValidation } from '@/validations/createShortLink.validation'
 
 import { DialogContent } from '@/components/ui/dialog'
+import { Button } from '@/components/ui/button'
 
 import Input from '@/components/Input'
-import Button from '@/components/Button'
 
 interface Props {
   onClose: () => void
