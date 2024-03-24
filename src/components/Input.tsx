@@ -29,6 +29,7 @@ const Input = forwardRef(function Component(
     errorMessage,
     multiline,
     className,
+    defaultValue,
     ...props
   }: Props,
   ref: any,
@@ -58,19 +59,20 @@ const Input = forwardRef(function Component(
 
       {multiline ? (
         <textarea
-          id={inputId}
-          className={inputStyleClasses + ' resize-none ' + className}
           rows={4}
           ref={ref}
+          id={inputId}
+          className={inputStyleClasses + ' resize-none ' + className}
           {...props}
         >
-          {props.defaultValue}
+          {defaultValue}
         </textarea>
       ) : (
         <input
-          id={inputId}
-          className={inputStyleClasses + ' ' + className}
           ref={ref}
+          id={inputId}
+          defaultValue={defaultValue}
+          className={inputStyleClasses + ' ' + className}
           {...props}
         />
       )}
