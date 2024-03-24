@@ -1,3 +1,5 @@
+import type { ShortLink } from '@prisma/client'
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,11 +15,11 @@ import DeleteShortLinkMenuItem from '@/components/DeleteShortLinkMenuItem'
 import { IoEllipsisVerticalSharp } from 'react-icons/io5'
 
 interface Props {
-  shortLinkId: bigint
+  shortLink: { id: bigint; alias: string | null; description: string | null }
   shortLinkUrl: string
 }
 
-const ShortLinkOptionsMenu = ({ shortLinkId, shortLinkUrl }: Props) => {
+const ShortLinkOptionsMenu = ({ shortLink, shortLinkUrl }: Props) => {
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger
@@ -32,8 +34,14 @@ const ShortLinkOptionsMenu = ({ shortLinkId, shortLinkUrl }: Props) => {
       <DropdownMenuContent>
         <DropdownMenuGroup>
           <CopyShortLinkUrlMenuItem shortLinkUrl={shortLinkUrl} />
-          <UpdateShortLinkMenuItem shortLinkId={shortLinkId} />
-          <DeleteShortLinkMenuItem shortLinkId={shortLinkId} />
+          <UpdateShortLinkMenuItem
+            shortLinkId={shortLink.id}
+            defaultData={{
+              alias: shortLink.alias,
+              description: shortLink.description,
+            }}
+          />
+          <DeleteShortLinkMenuItem shortLinkId={shortLink.id} />
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -11,9 +11,17 @@ interface Props {
   id: bigint
   createdAt: Date
   originalUrl: string
+  description: string | null
 }
 
-const ShortLinkCard = ({ code, alias, originalUrl, createdAt, id }: Props) => {
+const ShortLinkCard = ({
+  code,
+  alias,
+  description,
+  originalUrl,
+  createdAt,
+  id,
+}: Props) => {
   const name = alias ?? code
   const shortLinkUrl = `http://localhost:3000/${name}`
 
@@ -22,17 +30,22 @@ const ShortLinkCard = ({ code, alias, originalUrl, createdAt, id }: Props) => {
       <h6 className='flex'>
         <TbWorld fontSize='1.6rem' className='self-start' />
 
-        <span className='text-xl font-semibold leading-[1.15]'>
+        <span className='text-xl font-bold leading-[1.15]'>
           <span>/{name}</span>{' '}
           <CopyShortLinkUrlIconButton shortLinkUrl={shortLinkUrl} />
         </span>
       </h6>
 
-      <ShortLinkOptionsMenu shortLinkId={id} shortLinkUrl={shortLinkUrl} />
+      <ShortLinkOptionsMenu
+        shortLink={{ alias, description, id }}
+        shortLinkUrl={shortLinkUrl}
+      />
 
-      <p className='w-full overflow-hidden text-ellipsis text-nowrap text-sm'>
+      <p className='mb-1 w-full overflow-hidden text-ellipsis text-nowrap text-sm font-medium text-gray-500'>
         {originalUrl}
       </p>
+
+      <p className='text-xs'>{description}</p>
 
       <span className='text-xs font-semibold text-gray-600'>
         {getTimeAgo(createdAt)}
