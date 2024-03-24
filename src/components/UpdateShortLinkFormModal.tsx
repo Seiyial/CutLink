@@ -11,6 +11,7 @@ import { DialogContent } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 
 import Input from '@/components/Input'
+import { Loader2 } from 'lucide-react'
 
 interface Props {
   onClose: () => void
@@ -23,7 +24,8 @@ const UpdateShortLinkFormModal = ({
   shortLinkId,
   defaultData,
 }: Props) => {
-  const { mutate: mutateUpdateShortLink } = api.shortLink.update.useMutation()
+  const { mutate: mutateUpdateShortLink, isLoading } =
+    api.shortLink.update.useMutation()
   const apiUtils = api.useUtils()
 
   const {
@@ -76,7 +78,10 @@ const UpdateShortLinkFormModal = ({
           errorMessage={errors.description?.message}
         />
 
-        <Button className='w-full'>Save</Button>
+        <Button className='w-full' disabled={isLoading}>
+          {isLoading && <Loader2 className='mr-2 h-4 w-4 animate-spin' />}
+          Save
+        </Button>
       </form>
     </DialogContent>
   )

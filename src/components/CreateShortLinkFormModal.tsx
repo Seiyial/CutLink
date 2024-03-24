@@ -16,12 +16,15 @@ import { Button } from '@/components/ui/button'
 
 import Input from '@/components/Input'
 
+import { Loader2 } from 'lucide-react'
+
 interface Props {
   onClose: () => void
 }
 
 const CreateShortLinkFormModal: FC<Props> = ({ onClose }) => {
-  const { mutate: mutateCreateShortLink } = api.shortLink.create.useMutation()
+  const { mutate: mutateCreateShortLink, isLoading } =
+    api.shortLink.create.useMutation()
   const utils = api.useUtils()
 
   const {
@@ -83,7 +86,12 @@ const CreateShortLinkFormModal: FC<Props> = ({ onClose }) => {
           errorMessage={errors.description?.message}
         />
 
-        <Button className='bg-emerald-400 hover:bg-emerald-500' type='submit'>
+        <Button
+          className='bg-emerald-500 hover:bg-emerald-600'
+          type='submit'
+          disabled={isLoading}
+        >
+          {isLoading && <Loader2 className='mr-2 h-4 w-4 animate-spin' />}
           Save
         </Button>
       </form>
