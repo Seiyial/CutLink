@@ -16,7 +16,7 @@ export default async function DashboardLayout({
   if (!session) redirect('/getting_started')
 
   return (
-    <main className='px-16 pb-6'>
+    <main className='px-16 pb-16'>
       <DashboardNavbar {...session.user} />
       {children}
     </main>
