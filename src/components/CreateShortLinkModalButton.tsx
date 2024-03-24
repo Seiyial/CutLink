@@ -1,0 +1,30 @@
+import { useState } from 'react'
+
+import { Plus } from 'lucide-react'
+
+import { Button } from '@/components/ui/button'
+import { Dialog, DialogTrigger } from '@/components/ui/dialog'
+
+import CreateShortLinkModal from '@/components/CreateShortLinkModal'
+
+const CreateShortLinkModalButton = () => {
+  const [open, setOpen] = useState(false)
+
+  const handleCloseModal = () => {
+    setOpen(false)
+  }
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button variant='secondary' className='bg-gray-200 hover:bg-gray-300'>
+          <Plus className='mr-1 h-5 w-5' /> New short link
+        </Button>
+      </DialogTrigger>
+
+      <CreateShortLinkModal onClose={handleCloseModal} />
+    </Dialog>
+  )
+}
+
+export default CreateShortLinkModalButton

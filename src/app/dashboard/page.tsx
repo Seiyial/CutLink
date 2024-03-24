@@ -3,21 +3,18 @@
 import { useSearchShortLinks } from '@/hooks/useSearchShortLinks.hook'
 import { useSearchQueryParams } from '@/hooks/useSearchQueryParams.hook'
 import { useHandleSearchShortLinks } from '@/hooks/useHandleSearchShortLinks.hook'
-import { useModal } from '@/hooks/useModal.hook'
 
 import Input from '@/components/Input'
-import Button from '@/components/Button'
 import ShortLinkCard from '@/components/ShortLinkCard'
 import ShortLinkCardSkeleton from '@/components/ShortLinkCardSkeleton'
-import CreateShortLinkModal from '@/components/CreateShortLinkModal'
+import CreateShortLinkModalButton from '@/components/CreateShortLinkModalButton'
 
-import { IoIosSearch, IoMdAdd } from 'react-icons/io'
+import { IoIosSearch } from 'react-icons/io'
 import { MdErrorOutline } from 'react-icons/md'
 import { TbLinkOff } from 'react-icons/tb'
 
 export default function DashboardPage() {
   const { searchParams } = useSearchQueryParams()
-  const { isOpen, onOpen, onClose } = useModal()
 
   const searchShortLinks = useHandleSearchShortLinks()
 
@@ -26,8 +23,6 @@ export default function DashboardPage() {
 
   return (
     <section className='pt-5'>
-      <CreateShortLinkModal isOpen={isOpen} onClose={onClose} />
-
       <article className='mb-4 flex items-center gap-3'>
         <Input
           defaultValue={searchParams.get('query') ?? ''}
@@ -38,13 +33,7 @@ export default function DashboardPage() {
           className='w-full'
         />
 
-        <Button
-          startIcon={<IoMdAdd fontSize='1.3rem' />}
-          className='py-2'
-          onClick={onOpen}
-        >
-          New short URL
-        </Button>
+        <CreateShortLinkModalButton />
       </article>
 
       {isLoading ? (
