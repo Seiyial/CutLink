@@ -1,6 +1,6 @@
 import { BASE, CHARACTER_SET } from '@/lib/constants'
 
-export default function toBase62(num: bigint) {
+export default function shortLinkIdEncoder(num: bigint) {
   let encoded = ''
 
   while (num > 0) {

@@ -2,7 +2,11 @@ import { z } from 'zod'
 
 import { TRPCError } from '@trpc/server'
 
-import { createTRPCRouter, protectedProcedure } from '@/server/api/trpc'
+import {
+  createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+} from '@/server/api/trpc'
 
 import { createShortLinkValidation } from '@/validations/createShortLink.validation'
 import { updateShortLinkValidation } from '@/validations/updateShortLink.validation'
@@ -33,6 +37,37 @@ export const shortLinkRouter = createTRPCRouter({
           createdAt: true,
           originalUrl: true,
           description: true,
+        },
+      })
+    }),
+
+  getShortLinkByAlias: publicProcedure
+    .input(
+      z
+        .string()
+        .min(1, 'The query is required')
+        .max(30, 'The query must has maximum 30 characters'),
+    )
+    .query(({ ctx, input: alias }) => {
+      return ctx.db.shortLink.findUnique({
+        where: {
+          alias: alias,
+        },
+        select: {
+          originalUrl: true,
+        },
+      })
+    }),
+
+  getShortLinkById: publicProcedure
+    .input(z.bigint().min(10000000000n))
+    .query(({ ctx, input: id }) => {
+      return ctx.db.shortLink.findUnique({
+        where: {
+          id,
+        },
+        select: {
+          originalUrl: true,
         },
       })
     }),

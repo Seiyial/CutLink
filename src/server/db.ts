@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client'
 
 import { env } from '@/env'
 
-import toBase62 from '@/lib/toBase62'
+import shortLinkIdEncoder from '@/lib/shortLinkIdEncoder'
 
 const createPrismaClient = () =>
   new PrismaClient({
@@ -14,7 +14,7 @@ const createPrismaClient = () =>
         code: {
           needs: { id: true },
           compute({ id }) {
-            return toBase62(id)
+            return shortLinkIdEncoder(id)
           },
         },
       },
