@@ -1,3 +1,5 @@
+import { useToast } from '@/components/ui/use-toast'
+
 import {
   TooltipContent,
   TooltipProvider,
@@ -12,8 +14,13 @@ interface Props {
 }
 
 const CopyShortLinkUrlIconButton = ({ shortLinkUrl }: Props) => {
+  const { toast } = useToast()
+
   const handleCopyShortLinkUrl = async () => {
     await navigator.clipboard.writeText(shortLinkUrl)
+    toast({
+      title: 'Copied link',
+    })
   }
 
   return (

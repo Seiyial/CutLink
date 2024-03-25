@@ -1,4 +1,5 @@
 import { DropdownMenuItem } from '@/components/ui/dropdown-menu'
+import { useToast } from '@/components/ui/use-toast'
 
 import { Copy } from 'lucide-react'
 
@@ -7,8 +8,13 @@ interface Props {
 }
 
 const CopyShortLinkUrlMenuItem = ({ shortLinkUrl }: Props) => {
+  const { toast } = useToast()
+
   const handleCopyShortLinkUrl = async () => {
     await navigator.clipboard.writeText(shortLinkUrl)
+    toast({
+      title: 'Copied link',
+    })
   }
 
   return (

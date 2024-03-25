@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 
 import { TRPCReactProvider } from '@/trpc/react'
 
+import { Toaster } from '@/components/ui/toaster'
 import MadeBy from '@/components/MadeBy'
 
 const inter = Inter({
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body className={`font-sans ${inter.variable} relative min-h-screen`}>
         <TRPCReactProvider>{children}</TRPCReactProvider>
         <MadeBy />
+        <Toaster />
       </body>
     </html>
   )
