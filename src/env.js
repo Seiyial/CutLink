@@ -26,7 +26,7 @@ export const env = createEnv({
     GITHUB_CLIENT_SECRET: z.string(),
   },
   client: {
-    NEXT_PUBLIC_HOST: z.string(),
+    NEXT_PUBLIC_HOST: z.string().optional(),
   },
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
