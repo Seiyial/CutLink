@@ -13,8 +13,8 @@ const inter = Inter({
 
 export const metadata = {
   title: 'CutLink',
-  description: 'Shortener URL',
-  icons: [{ rel: 'icon', url: '/favicon.ico' }],
+  description: 'Shortener URL, made by Emerzon Javier Kolki Martinez',
+  icons: [{ rel: 'icon', url: '/favicon.png' }],
 }
 
 export default function RootLayout({
