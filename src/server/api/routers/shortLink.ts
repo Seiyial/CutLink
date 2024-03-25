@@ -21,9 +21,18 @@ export const shortLinkRouter = createTRPCRouter({
         where: {
           ...(isSearchQueryExist
             ? {
-                alias: {
-                  contains: searchQuery,
-                },
+                OR: [
+                  {
+                    alias: {
+                      contains: searchQuery,
+                    },
+                  },
+                  {
+                    originalUrl: {
+                      contains: searchQuery,
+                    },
+                  },
+                ],
               }
             : undefined),
           AND: {
