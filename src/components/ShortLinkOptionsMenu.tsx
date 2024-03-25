@@ -1,5 +1,3 @@
-import type { ShortLink } from '@prisma/client'
-
 import {
   DropdownMenu,
   DropdownMenuContent,
