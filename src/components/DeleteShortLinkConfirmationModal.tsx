@@ -4,6 +4,7 @@ import { Loader2 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { DialogContent } from '@/components/ui/dialog'
+import { useToast } from '@/components/ui/use-toast'
 
 interface Props {
   onClose: () => void
@@ -11,6 +12,8 @@ interface Props {
 }
 
 const DeleteShortLinkConfirmationModal = ({ shortLinkId, onClose }: Props) => {
+  const { toast } = useToast()
+
   const { mutate: mutateDeleteShortLink, isLoading } =
     api.shortLink.delete.useMutation()
   const apiUtils = api.useUtils()
@@ -20,6 +23,10 @@ const DeleteShortLinkConfirmationModal = ({ shortLinkId, onClose }: Props) => {
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       onSuccess: async () => {
         await apiUtils.shortLink.searchShortLinks.invalidate()
+        toast({
+          variant: 'destructive',
+          title: 'Short link deleted',
+        })
         onClose()
       },
     })
