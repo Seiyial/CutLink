@@ -1,8 +1,6 @@
 import ShortLinkOptionsMenu from '@/components/ShortLinkOptionsMenu'
 import CopyShortLinkUrlIconButton from '@/components/CopyShortLinkUrlIconButton'
 
-import { env } from '@/env'
-
 import { getTimeAgo } from '@/lib/timeAgo'
 
 import { TbWorld } from 'react-icons/tb'
@@ -25,7 +23,7 @@ const ShortLinkCard = ({
   id,
 }: Props) => {
   const name = alias ?? code
-  const shortLinkUrl = `${env.NEXT_PUBLIC_HOST}/${name}`
+  const shortLinkUrl = `${process.env.VERCEL_URL ?? process.env.NEXTAUTH_URL}/${name}`
 
   return (
     <article className='group/card relative rounded-lg border-b border-gray-300 bg-gradient-to-b from-gray-100 to-transparent p-3.5 hover:from-gray-200/80'>
