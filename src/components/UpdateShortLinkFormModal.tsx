@@ -7,10 +7,11 @@ import type { UpdateShortLink } from '@/types/updateShortLink'
 import { updateShortLinkValidation } from '@/validations/updateShortLink.validation'
 
 import { DialogContent } from '@/components/ui/dialog'
-
 import { Button } from '@/components/ui/button'
+import { useToast } from '@/components/ui/use-toast'
 
 import Input from '@/components/Input'
+
 import { Loader2 } from 'lucide-react'
 
 interface Props {
@@ -24,6 +25,8 @@ const UpdateShortLinkFormModal = ({
   shortLinkId,
   defaultData,
 }: Props) => {
+  const { toast } = useToast()
+
   const { mutate: mutateUpdateShortLink, isLoading } =
     api.shortLink.update.useMutation()
   const apiUtils = api.useUtils()
@@ -45,6 +48,10 @@ const UpdateShortLinkFormModal = ({
         onSuccess: async () => {
           await apiUtils.shortLink.searchShortLinks.invalidate()
           onClose()
+          toast({
+            variant: 'success',
+            title: 'Short link updated successfully',
+          })
         },
       },
     )
