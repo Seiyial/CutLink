@@ -36,8 +36,8 @@ const Input = forwardRef(function Component(
 ) {
   const inputId = useId()
 
-  const inputStyleClasses = `rounded border bg-gray-100 py-2 pr-4 text-gray-700 outline-none
-  placeholder:text-gray-400 ${fullWidth && 'w-full'} ${Boolean(startIcon) ? 'pl-10' : 'pl-4'} ${error ? 'border-red-500' : 'border-gray-300'}`
+  const inputStyleClasses = `rounded border py-2 pr-4 text-gray-700 outline-none
+  placeholder:text-gray-400 ${fullWidth && 'w-full'} ${Boolean(startIcon) ? 'pl-10' : 'pl-4'} ${error ? 'border-red-500' : 'border-gray-400'}`
 
   return (
     <div
@@ -45,7 +45,7 @@ const Input = forwardRef(function Component(
     >
       {startIcon && (
         <div
-          className={`absolute left-3 top-1/2 -translate-y-1/2 ${error ? 'text-red-500' : 'text-gray-700'}`}
+          className={`absolute left-3 top-1/2 -translate-y-1/2 ${error ? 'text-red-500' : 'text-gray-400'}`}
         >
           {startIcon}
         </div>
