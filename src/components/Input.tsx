@@ -1,6 +1,6 @@
 import {
-  useId,
   forwardRef,
+  useId,
   type InputHTMLAttributes,
   type ReactNode,
 } from 'react'
@@ -36,8 +36,8 @@ const Input = forwardRef(function Component(
 ) {
   const inputId = useId()
 
-  const inputStyleClasses = `rounded border py-2 pr-4 text-gray-700 outline-none
-  placeholder:text-gray-400 ${fullWidth && 'w-full'} ${Boolean(startIcon) ? 'pl-10' : 'pl-4'} ${error ? 'border-red-500' : 'border-gray-400'}`
+  const inputStyleClasses = `transition-all rounded-md border-2 py-2 pr-4 text-gray-700 outline-none
+  placeholder:text-gray-400 ${fullWidth && 'w-full'} ${Boolean(startIcon) ? 'pl-10' : 'pl-4'} ${error ? 'border-red-500' : 'border-gray-300/80 hover:border-gray-500/90 focus:border-gray-400 hover:focus:border-gray-500/90'}`
 
   return (
     <div
@@ -59,10 +59,10 @@ const Input = forwardRef(function Component(
 
       {multiline ? (
         <textarea
-          rows={4}
+          rows={3}
           ref={ref}
           id={inputId}
-          className={inputStyleClasses + ' resize-none ' + className}
+          className={inputStyleClasses + ' resize-y ' + className}
           {...props}
         >
           {defaultValue}

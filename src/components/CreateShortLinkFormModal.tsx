@@ -4,15 +4,15 @@ import type { FC } from 'react'
 
 import { api } from '@/trpc/react'
 
-import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
 
 import type { CreateShortLink } from '@/types/createShortLink'
 
 import { createShortLinkValidation } from '@/validations/createShortLink.validation'
 
-import { DialogContent } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
+import { DialogContent } from '@/components/ui/dialog'
 
 import Input from '@/components/Input'
 
@@ -58,24 +58,22 @@ const CreateShortLinkFormModal: FC<Props> = ({ onClose }) => {
         onClick={event => event.stopPropagation()}
         onSubmit={handleCreateShortLinkSubmit}
       >
-        <h2 className='text-center text-2xl font-semibold'>Create short URL</h2>
+        <h2 className='text-center text-2xl font-semibold mb-4'>Create short URL</h2>
 
-        <div className='flex gap-1'>
-          <Input
-            fullWidth
-            placeholder='Original URL*'
-            {...register('originalUrl')}
-            error={Boolean(errors.originalUrl)}
-            errorMessage={errors.originalUrl?.message}
-          />
-          <Input
-            fullWidth
-            placeholder='Alias'
-            {...register('alias')}
-            error={Boolean(errors.alias)}
-            errorMessage={errors.alias?.message}
-          />
-        </div>
+        <Input
+          fullWidth
+          placeholder='Original URL*'
+          {...register('originalUrl')}
+          error={Boolean(errors.originalUrl)}
+          errorMessage={errors.originalUrl?.message}
+        />
+        <Input
+          fullWidth
+          placeholder='Alias'
+          {...register('alias')}
+          error={Boolean(errors.alias)}
+          errorMessage={errors.alias?.message}
+        />
 
         <Input
           fullWidth

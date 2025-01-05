@@ -17,9 +17,10 @@ const CreateShortLinkModalButton = () => {
       <DialogTrigger asChild>
         <Button
           variant='secondary'
-          className='bg-emerald-500 text-white hover:bg-emerald-600'
+          className='border-emerald-500 hover:border-emerald-600 bg-emerald-500 text-white hover:bg-emerald-600'
+          size='lg'
         >
-          <Plus className='mr-1 h-5 w-5' /> New short link
+          <Plus className='-ml-2 h-5 w-5 mr-2' /> New short link
         </Button>
       </DialogTrigger>
 

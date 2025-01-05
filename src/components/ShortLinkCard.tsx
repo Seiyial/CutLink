@@ -1,10 +1,10 @@
-import ShortLinkOptionsMenu from '@/components/ShortLinkOptionsMenu'
 import CopyShortLinkUrlIconButton from '@/components/CopyShortLinkUrlIconButton'
+import ShortLinkOptionsMenu from '@/components/ShortLinkOptionsMenu'
 
 import { getTimeAgo } from '@/lib/timeAgo'
 
-import { TbWorld } from 'react-icons/tb'
 import { env } from '@/env'
+import { TbWorld } from 'react-icons/tb'
 
 interface Props {
   code: string
@@ -31,24 +31,29 @@ const ShortLinkCard = ({
       <h6 className='flex'>
         <TbWorld fontSize='1.6rem' className='self-start' />
 
-        <span className='text-xl font-bold leading-[1.15]'>
-          <span>/{name}</span>{' '}
-          <CopyShortLinkUrlIconButton shortLinkUrl={shortLinkUrl} />
+        <div className='w-2 shrink-0' />
+
+        <span className='text-xl font-bold font-mono rounded-md bg-sky-500/30 px-1 -ml-1 leading-[1.15]'>
+          <span>/{name}</span>
         </span>
       </h6>
+
+      <span className='absolute top-3 right-12'>
+        <CopyShortLinkUrlIconButton shortLinkUrl={shortLinkUrl} />
+      </span>
 
       <ShortLinkOptionsMenu
         shortLink={{ alias, description, id }}
         shortLinkUrl={shortLinkUrl}
       />
 
-      <p className='mb-1 w-full overflow-hidden text-ellipsis text-nowrap text-sm font-medium text-gray-500'>
+      <p className='mb-4 mt-2 ml-8 w-full overflow-hidden text-ellipsis text-nowrap text-sm font-medium text-gray-500'>
         {originalUrl}
       </p>
 
       <p className='text-xs'>{description}</p>
 
-      <span className='text-xs font-semibold text-gray-600'>
+      <span className='text-xs ml-8 font-semibold text-gray-600'>
         {getTimeAgo(createdAt)}
       </span>
     </article>

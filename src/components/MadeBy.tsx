@@ -8,8 +8,17 @@ const MadeBy = () => {
         href='https://emerzonkolki.dev'
         target='_blank'
         className='font-semibold'
+        rel='noopener noreferrer'
       >
         Emerzon Javier Kolki Martinez
+      </Link>,&nbsp;
+      modded by
+      <Link
+        href='https://syxworks.me'
+        target='_blank'
+        className='font-semibold'
+      >
+        SYXWORKS
       </Link>
     </footer>
   )
